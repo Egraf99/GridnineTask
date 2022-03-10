@@ -28,21 +28,21 @@ public class TestFlights extends Assert {
     @Test
    public void filterFlightsWithDepartedBeforeNow() {
         correctFlights.remove(2);
-        receivedFlights = FlightFilter.byFirstDepAfterNow(testingFlights);
+        receivedFlights = FlightFilter.by(testingFlights, "firstDepAfterNow");
         assertEquals(correctFlights, receivedFlights);
     }
 
     @Test
     public void filterFlightsWithAllDepartedSegmentsAfterNow() {
         correctFlights.remove(2);
-        receivedFlights = FlightFilter.byAnyDepAfterNow(testingFlights);
+        receivedFlights = FlightFilter.by(testingFlights, "anyDepAfterNow");
         assertEquals(correctFlights, receivedFlights);
     }
 
     @Test
     public void filterFlightsWithArrAfterDep() {
         correctFlights.remove(3);
-        receivedFlights = FlightFilter.byArrAfterDep(testingFlights);
+        receivedFlights = FlightFilter.by(testingFlights, "arrAfterDep");
         assertEquals(correctFlights, receivedFlights);
     }
 
@@ -50,7 +50,7 @@ public class TestFlights extends Assert {
     public void filterFlightsWithTimeOnGroundLessTwoHour() {
         correctFlights.remove(5);
         correctFlights.remove(4);
-        receivedFlights = FlightFilter.byTimeOnGroundMoreTwoHours(testingFlights);
+        receivedFlights = FlightFilter.by(testingFlights, "timeOnGroundLessTwoHours");
         assertEquals(correctFlights, receivedFlights);
     }
 
@@ -58,7 +58,7 @@ public class TestFlights extends Assert {
     public void filterFlightsWithTimeOnGroundLessTwoHourAndArrAfterDep() {
         // several filter at the same time
         correctFlights.subList(3, 6).clear();
-        receivedFlights = FlightFilter.byTimeOnGroundMoreTwoHours(FlightFilter.byArrAfterDep(testingFlights));
+        receivedFlights = FlightFilter.by(testingFlights, "timeOnGroundLessTwoHours", "arrAfterDep");
         assertEquals(correctFlights, receivedFlights);
     }
 }

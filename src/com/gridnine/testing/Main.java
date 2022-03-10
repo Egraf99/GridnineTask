@@ -1,23 +1,49 @@
 package com.gridnine.testing;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
         List<Flight> testingFlights = FlightBuilder.createFlights();
-        List<Flight> correctFlights = new ArrayList<>(testingFlights);
         for (Flight f: testingFlights) {
             System.out.println(f);
         }
-        System.out.println(testingFlights.equals(correctFlights));
 
-        List listOne = Arrays.asList('a', 'b', 'c');
-        List listTwo = Arrays.asList('a', 'b', 'c');
-        List listThree = Arrays.asList('c', 'a', 'b');
+        List<Flight> correctFLight = FlightFilter.byFirstDepAfterNow(testingFlights);
 
-        boolean isEqual = listOne.equals(listTwo);
-        System.out.println(isEqual);
+//        for (Flight f: correctFLight) {
+//            System.out.println(f);
+//        }
+        System.out.println();
+        correctFLight = FlightFilter.by(testingFlights, "firstDepAfterNow", "sdfsfafsdaf");
+
+        for (Flight f: correctFLight) {
+            System.out.println(f);
+        }
+
+//        System.out.println();
+//        correctFLight = FlightFilter.byArrAfterDep(testingFlights);
+//
+//        for (Flight f: correctFLight)
+//            System.out.println(f);
+//
+//        System.out.println();
+//        correctFLight = FlightFilter.byTimeOnGroundLessTwoHours(testingFlights);
+//
+//        for (Flight f: correctFLight)
+//            System.out.println(f);
+//
+//        System.out.println();
+//        correctFLight = FlightFilter.byArrAfterDep(FlightFilter.byTimeOnGroundLessTwoHours(testingFlights));
+//
+//        for (Flight f: correctFLight)
+//            System.out.println(f);
+//        System.out.println();
+//
+//
+//        correctFLight = FlightFilter.byTimeOnGroundLessTwoHours(testingFlights);
+//
+//        for (Flight f: correctFLight)
+//            System.out.println(f);
     }
 }
