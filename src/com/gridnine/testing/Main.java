@@ -5,45 +5,17 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
         List<Flight> testingFlights = FlightBuilder.createFlights();
-        for (Flight f: testingFlights) {
-            System.out.println(f);
-        }
 
-        List<Flight> correctFLight = FlightFilter.byFirstDepAfterNow(testingFlights);
+        // first: filter flights where department before now
+        List<Flight> correctFLight = FlightsFilter.by(testingFlights, "firstDepAfterNow");
+        System.out.println(correctFLight);
 
-//        for (Flight f: correctFLight) {
-//            System.out.println(f);
-//        }
-        System.out.println();
-        correctFLight = FlightFilter.by(testingFlights, "firstDepAfterNow", "sdfsfafsdaf");
+        //second: filter flights where arrival before department
+        correctFLight = FlightsFilter.by(testingFlights, "arrAfterDep");
+        System.out.println(correctFLight);
 
-        for (Flight f: correctFLight) {
-            System.out.println(f);
-        }
-
-//        System.out.println();
-//        correctFLight = FlightFilter.byArrAfterDep(testingFlights);
-//
-//        for (Flight f: correctFLight)
-//            System.out.println(f);
-//
-//        System.out.println();
-//        correctFLight = FlightFilter.byTimeOnGroundLessTwoHours(testingFlights);
-//
-//        for (Flight f: correctFLight)
-//            System.out.println(f);
-//
-//        System.out.println();
-//        correctFLight = FlightFilter.byArrAfterDep(FlightFilter.byTimeOnGroundLessTwoHours(testingFlights));
-//
-//        for (Flight f: correctFLight)
-//            System.out.println(f);
-//        System.out.println();
-//
-//
-//        correctFLight = FlightFilter.byTimeOnGroundLessTwoHours(testingFlights);
-//
-//        for (Flight f: correctFLight)
-//            System.out.println(f);
+        //third: filter flights where time on ground more 2 hours
+        correctFLight = FlightsFilter.by(testingFlights, "timeOnGroundLessTwoHours");
+        System.out.println(correctFLight);
     }
 }
